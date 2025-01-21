@@ -14,7 +14,7 @@ body{
     font-size:12px;
     font-family:Georgia, "Times New Roman", Times, serif;
     color:#787878;
-    background-image: url("images/Bliss.bmp"); /* Replace with your image URL */
+    background-image: url("./images/Bliss.bmp"); /* Replace with your image URL */
     background-size: cover; /* Makes the background cover the whole page */
     background-position: center; /* Centers the background */
     background-repeat: no-repeat; /* Prevents the background from repeating */
