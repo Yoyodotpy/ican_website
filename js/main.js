@@ -154,8 +154,8 @@ var main = (function () {
     prompt,
     cmdLine,
     output,
-    sidenav,
-    profilePic,
+    //sidenav,
+    //profilePic,
     user,
     host,
     root,
@@ -179,32 +179,32 @@ var main = (function () {
         "Invalid value " + output + " for argument 'output'.",
       );
     }
-    if (
-      !(sidenav instanceof Node) ||
-      sidenav.nodeName.toUpperCase() !== "DIV"
-    ) {
-      throw new InvalidArgumentException(
-        "Invalid value " + sidenav + " for argument 'sidenav'.",
-      );
-    }
-    if (
-      !(profilePic instanceof Node) ||
-      profilePic.nodeName.toUpperCase() !== "IMG"
-    ) {
-      throw new InvalidArgumentException(
-        "Invalid value " + profilePic + " for argument 'profilePic'.",
-      );
-    }
+    //if (
+    //  !(sidenav instanceof Node) ||
+    //  sidenav.nodeName.toUpperCase() !== "DIV"
+    //) {
+    //  throw new InvalidArgumentException(
+    //    "Invalid value " + sidenav + " for argument 'sidenav'.",
+    //  );
+    //}
+    //if (
+    //  !(profilePic instanceof Node) ||
+    //  profilePic.nodeName.toUpperCase() !== "IMG"
+    //) {
+    //  throw new InvalidArgumentException(
+    //    "Invalid value " + profilePic + " for argument 'profilePic'.",
+    //  );
+    //}
     typeof user === "string" &&
       typeof host === "string" &&
       (this.completePrompt = user + "@" + host + ":~" + (root ? "#" : "$"));
-    this.profilePic = profilePic;
+    //this.profilePic = profilePic;
     this.prompt = prompt;
     this.cmdLine = cmdLine;
     this.output = output;
-    this.sidenav = sidenav;
-    this.sidenavOpen = false;
-    this.sidenavElements = [];
+    //this.sidenav = sidenav;
+    //this.sidenavOpen = false;
+    //this.sidenavElements = [];
     this.typeSimulator = new TypeSimulator(outputTimer, output);
   };
 
@@ -225,22 +225,22 @@ var main = (function () {
   };
 
   Terminal.prototype.init = function () {
-    this.sidenav.addEventListener("click", ignoreEvent);
+    //this.sidenav.addEventListener("click", ignoreEvent);
     this.cmdLine.disabled = true;
-    this.sidenavElements.forEach(function (elem) {
-      elem.disabled = true;
-    });
-    this.prepareSideNav();
+    //this.sidenavElements.forEach(function (elem) {
+    //  elem.disabled = true;
+    //
+    //this.prepareSideNav();
     this.lock(); // Need to lock here since the sidenav elements were just added
-    document.body.addEventListener(
-      "click",
-      function (event) {
-        if (this.sidenavOpen) {
-          this.handleSidenav(event);
-        }
-        this.focus();
-      }.bind(this),
-    );
+    //document.body.addEventListener(
+    //  "click",
+    //  function (event) {
+    //    if (this.sidenavOpen) {
+    //      this.handleSidenav(event);
+    //    }
+    //    this.focus();
+    //  }.bind(this),
+    //);
     this.cmdLine.addEventListener(
       "keydown",
       function (event) {
@@ -266,67 +266,67 @@ var main = (function () {
     element.style.transform = "translateX(0)";
   };
 
-  Terminal.prototype.prepareSideNav = function () {
-    var capFirst = (function () {
-      return function (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      };
-    })();
-    for (var file in files.getInstance()) {
-      var element = document.createElement("button");
-      Terminal.makeElementDisappear(element);
-      element.onclick = function (file, event) {
-        this.handleSidenav(event);
-        this.cmdLine.value = "cat " + file + " ";
-        this.handleCmd();
-      }.bind(this, file);
-      element.appendChild(
-        document.createTextNode(
-          capFirst(file.replace(/\.[^/.]+$/, "").replace(/_/g, " ")),
-        ),
-      );
-      this.sidenav.appendChild(element);
-      this.sidenavElements.push(element);
-    }
-    // Shouldn't use document.getElementById but Terminal is already using loads of params
-    document
-      .getElementById("sidenavBtn")
-      .addEventListener("click", this.handleSidenav.bind(this));
-  };
+  //  Terminal.prototype.prepareSideNav = function () {
+  //    var capFirst = (function () {
+  //      return function (string) {
+  //        return string.charAt(0).toUpperCase() + string.slice(1);
+  //      };
+  //    })();
+  //    for (var file in files.getInstance()) {
+  //      var element = document.createElement("button");
+  //      Terminal.makeElementDisappear(element);
+  //      element.onclick = function (file, event) {
+  //        this.handleSidenav(event);
+  //        this.cmdLine.value = "cat " + file + " ";
+  //        this.handleCmd();
+  //      }.bind(this, file);
+  //      element.appendChild(
+  //        document.createTextNode(
+  //          capFirst(file.replace(/\.[^/.]+$/, "").replace(/_/g, " ")),
+  //        ),
+  //      );
+  //      this.sidenav.appendChild(element);
+  //      this.sidenavElements.push(element);
+  //    }
+  // Shouldn't use document.getElementById but Terminal is already using loads of params
+  //    document
+  //      .getElementById("sidenavBtn")
+  //      .addEventListener("click", this.handleSidenav.bind(this));
+  //  };
 
-  Terminal.prototype.handleSidenav = function (event) {
-    if (this.sidenavOpen) {
-      this.profilePic.style.opacity = 0;
-      this.sidenavElements.forEach(Terminal.makeElementDisappear);
-      this.sidenav.style.width = "50px";
-      document.getElementById("sidenavBtn").innerHTML = "&#9776;";
-      this.sidenavOpen = false;
-    } else {
-      this.sidenav.style.width = "300px";
-      this.sidenavElements.forEach(Terminal.makeElementAppear);
-      document.getElementById("sidenavBtn").innerHTML = "&times;";
-      this.profilePic.style.opacity = 1;
-      this.sidenavOpen = true;
-    }
-    document.getElementById("sidenavBtn").blur();
-    ignoreEvent(event);
-  };
+  //  Terminal.prototype.handleSidenav = function (event) {
+  //    if (this.sidenavOpen) {
+  //      //this.profilePic.style.opacity = 0;
+  //      this.sidenavElements.forEach(Terminal.makeElementDisappear);
+  //      this.sidenav.style.width = "50px";
+  //      document.getElementById("sidenavBtn").innerHTML = "&#9776;";
+  //      this.sidenavOpen = false;
+  //    } else {
+  //      this.sidenav.style.width = "300px";
+  //      this.sidenavElements.forEach(Terminal.makeElementAppear);
+  //      document.getElementById("sidenavBtn").innerHTML = "&times;";
+  //      //this.profilePic.style.opacity = 1;
+  //      this.sidenavOpen = true;
+  //    }
+  //    document.getElementById("sidenavBtn").blur();
+  //    ignoreEvent(event);
+  //  };
 
   Terminal.prototype.lock = function () {
     this.exec();
     this.cmdLine.blur();
     this.cmdLine.disabled = true;
-    this.sidenavElements.forEach(function (elem) {
-      elem.disabled = true;
-    });
+    //    this.sidenavElements.forEach(function (elem) {
+    //      elem.disabled = true;
+    //    });
   };
 
   Terminal.prototype.unlock = function () {
     this.cmdLine.disabled = false;
     this.prompt.textContent = this.completePrompt;
-    this.sidenavElements.forEach(function (elem) {
-      elem.disabled = false;
-    });
+    //this.sidenavElements.forEach(function (elem) {
+    //  elem.disabled = false;
+    //});
     scrollToBottom();
     this.focus();
   };
@@ -613,8 +613,8 @@ var main = (function () {
         document.getElementById("prompt"),
         document.getElementById("cmdline"),
         document.getElementById("output"),
-        document.getElementById("sidenav"),
-        document.getElementById("profilePic"),
+        //document.getElementById("sidenav"),
+        //document.getElementById("profilePic"),
         configs.getInstance().user,
         configs.getInstance().host,
         configs.getInstance().is_root,
