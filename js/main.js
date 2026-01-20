@@ -76,7 +76,8 @@ var files = (function () {
     }
   };
   Singleton.defaultOptions = {
-    "about_me.txt": "My name is Loen and I am an ICAN student. ",
+    "about_me.txt":
+      "My name is Loen and I am an ICAN student. We've done a lot of things through the years, so feel free to go through the other files.",
     "getting_started.txt":
       "First, go to js/main.js and replace all the text on both singleton vars.\n- configs: All the text used on the website.\n- files: All the fake files used on the website. These files are also used to be listed on the sidenav.\nAlso please notice if a file content is a raw URL, when clicked/concatenated it will be opened on a new tab.\nDon't forget also to:\n- Change the page title on the index.html file\n- Change the website color on the css/main.css\n- Change the images located at the img folder. The suggested sizes are 150x150 for the avatar and 32x32/16x16 for the favicon.",
     "contact.txt": "mail@example.com",
