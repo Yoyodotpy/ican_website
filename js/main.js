@@ -76,8 +76,10 @@ var files = (function () {
     }
   };
   Singleton.defaultOptions = {
-    "about_me.txt":
-      "My name is Loen and I am an ICAN student. We've done a lot of things through the years, so feel free to go through the other files.",
+    "about_me.txt": {
+      text: "My name is Loen and I am an ICAN student. We've done a lot of things through the years, so feel free to go through the other files.",
+      image: "img/icon.svg", // relative to index.html
+    },
     "getting_started.txt":
       "First, go to js/main.js and replace all the text on both singleton vars.\n- configs: All the text used on the website.\n- files: All the fake files used on the website. These files are also used to be listed on the sidenav.\nAlso please notice if a file content is a raw URL, when clicked/concatenated it will be opened on a new tab.\nDon't forget also to:\n- Change the page title on the index.html file\n- Change the website color on the css/main.css\n- Change the images located at the img folder. The suggested sizes are 150x150 for the avatar and 32x32/16x16 for the favicon.",
     "contact.txt": "mail@example.com",
@@ -423,8 +425,23 @@ var main = (function () {
     }
   };
 
+  function renderTextWithImage(text, imageUrl) {
+    return `
+      <div style="
+        display:flex;
+        gap:16px;
+        align-items:flex-start;
+      ">
+        <img src="${imageUrl}"
+             style="max-width:150px; border-radius:6px;" />
+        <div style="white-space:pre-wrap;">${text}</div>
+      </div>
+    `;
+  }
+
   Terminal.prototype.cat = function (cmdComponents) {
-    var result;
+    let result;
+
     if (cmdComponents.length <= 1) {
       result =
         configs.getInstance().usage +
@@ -433,11 +450,7 @@ var main = (function () {
         " <" +
         configs.getInstance().file +
         ">";
-    } else if (
-      !cmdComponents[1] ||
-      !cmdComponents[1] === configs.getInstance().welcome_file_name ||
-      !files.getInstance().hasOwnProperty(cmdComponents[1])
-    ) {
+    } else if (!files.getInstance().hasOwnProperty(cmdComponents[1])) {
       result = configs
         .getInstance()
         .file_not_found.replace(
@@ -445,11 +458,20 @@ var main = (function () {
           cmdComponents[1],
         );
     } else {
-      result =
-        cmdComponents[1] === configs.getInstance().welcome_file_name
-          ? configs.getInstance().welcome
-          : files.getInstance()[cmdComponents[1]];
+      const file = files.getInstance()[cmdComponents[1]];
+
+      // 🔹 NEW: object-based file (text + image)
+      if (typeof file === "object" && file.text && file.image) {
+        this.output.innerHTML += renderTextWithImage(file.text, file.image);
+        this.output.innerHTML += "<br/>";
+        this.unlock();
+        return;
+      }
+
+      // 🔹 Old behavior (plain text)
+      result = file;
     }
+
     this.type(result, this.unlock.bind(this));
   };
 
