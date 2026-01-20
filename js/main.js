@@ -45,15 +45,15 @@ var configs = (function () {
     usage: "Usage",
     file: "file",
     file_not_found: "File '<value>' not found.",
-    username: "Username",
-    hostname: "Host",
+    username: "Visitor",
+    hostname: "ican_website",
     platform: "Platform",
     accesible_cores: "Accessible cores",
     language: "Language",
     value_token: "<value>",
-    host: "example.com",
-    user: "guest",
-    is_root: false,
+    host: "https://yoyodotpy.github.io/ican_website/",
+    user: "visitor",
+    is_root: true,
     type_delay: 20,
   };
   return {
@@ -76,8 +76,7 @@ var files = (function () {
     }
   };
   Singleton.defaultOptions = {
-    "about.txt":
-      "This website was made using only pure JavaScript with no extra libraries.\nI made it dynamic so anyone can use it, just download it from GitHub and change the config text according to your needs.\nIf you manage to find any bugs or security issues feel free to email me: luisbraganca@protonmail.com",
+    "about_me.txt": "My name is Loen and I am an ICAN student. ",
     "getting_started.txt":
       "First, go to js/main.js and replace all the text on both singleton vars.\n- configs: All the text used on the website.\n- files: All the fake files used on the website. These files are also used to be listed on the sidenav.\nAlso please notice if a file content is a raw URL, when clicked/concatenated it will be opened on a new tab.\nDon't forget also to:\n- Change the page title on the index.html file\n- Change the website color on the css/main.css\n- Change the images located at the img folder. The suggested sizes are 150x150 for the avatar and 32x32/16x16 for the favicon.",
     "contact.txt": "mail@example.com",
