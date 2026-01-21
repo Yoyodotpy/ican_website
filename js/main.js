@@ -80,11 +80,64 @@ var files = (function () {
       text: "My name is Loen and I am an ICAN student. We've done a lot of things through the years, so feel free to go through the other files.",
       image: "img/icon.svg", // relative to index.html
     },
-    "getting_started.txt":
-      "First, go to js/main.js and replace all the text on both singleton vars.\n- configs: All the text used on the website.\n- files: All the fake files used on the website. These files are also used to be listed on the sidenav.\nAlso please notice if a file content is a raw URL, when clicked/concatenated it will be opened on a new tab.\nDon't forget also to:\n- Change the page title on the index.html file\n- Change the website color on the css/main.css\n- Change the images located at the img folder. The suggested sizes are 150x150 for the avatar and 32x32/16x16 for the favicon.",
-    "contact.txt": "mail@example.com",
-    "social_network_1.txt": "https://www.socialite.com/username/",
-    "social_network_2.txt": "https://example.com/profile/9382/",
+    "after_effects_airplane.txt": {
+      text: "It's a plane made in After Effects",
+      image: "img/aeroplane.png", // relative to index.html
+    },
+    "free_birds_poster.txt": {
+      text: "I made a funny lil 1940s horror poster for a movie called Free Birds.",
+      image: "img/free_birds_1940_edition.png",
+    },
+
+    "joker_comic.txt": {
+      text: "A coloured in Joker comic panel.",
+      image: "img/jonkler.png",
+    },
+
+    "launcher_prototypes.txt": {
+      text: "Some prototypes made for a launcher project in ICAN.",
+      image: "img/launcher.png",
+    },
+
+    "jons_regrets.txt": {
+      text: "A modified image of Jon from Garfield & Co. to feature some of Garfield's signature moments. Made in Photoshop.",
+      image: "img/im-sorry-jon.png",
+    },
+
+    "minecraft_piston_door.txt": {
+      text: "We were learning about algebraic notation and simplification in ICAN sec 2, and this is a simplified algebraic notation powering a door when certain levers are pulled.",
+      image: "img/simplified.png",
+    },
+
+    "custom_roblox_character.txt": {
+      text: "I made a custom character in Blender that works in Roblox. It's inspired by the little green men stereotype.",
+      image: "img/alien_roblox_guy.png",
+    },
+
+    "custom_boomerang.txt": {
+      text: "I made a custom boomerang in Blender.",
+      image: "img/boomerang.png",
+    },
+
+    "custom_boat.txt": {
+      text: "I made a custom boat in Blender. Currently sliced in half to show the cross section.",
+      image: "img/boat.png",
+    },
+
+    "fusebead_pixel_art.txt": {
+      text: "I made a pixel art Glados on an NES cartridge, then recreated it using fusebeads in ICAN.",
+      image: "img/fusebead.jpg",
+    },
+
+    "pocket_milk_box.txt": {
+      text: "I went into Photoshop and made a Pocket Milk product box. We worked in teams.",
+      image: "img/pocket milk.png",
+    },
+
+    "ican_portfolio_website.txt": {
+      text: "I made this ICAN portfolio website for an expo. You can see it online at https://yoyodotpy.github.io/ican_website. This is the old one that wasn't very good.",
+      image: "img/website.png",
+    },
   };
   return {
     getInstance: function (options) {
@@ -433,7 +486,7 @@ var main = (function () {
         align-items:flex-start;
       ">
         <img src="${imageUrl}"
-             style="max-width:150px; border-radius:6px;" />
+             style="max-width:300px; border-radius:6px;" />
         <div style="white-space:pre-wrap;">${text}</div>
       </div>
     `;
