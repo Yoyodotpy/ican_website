@@ -158,6 +158,14 @@ var files = (function () {
 			text: "They made us come up with and present rebrand names for our program, mine was STEAM.",
 			image: "img/sec3/steamlogo.png",
 		},
+		"spritesheet.txt": {
+			text: "I made a sprite sheet for Unity.",
+			image: "img/sec3/boxboy.png",
+		},
+		"callsign_miami.txt": {
+			text: "We made a game during choice day, ours about shooting people as a plane.",
+			image: "img/sec3/callsign.webm",
+		},
 	};
 	return {
 		getInstance: function (options) {
